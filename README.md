@@ -7,3 +7,6 @@
 -Bước 4: ghi lệnh npm i để cài các gói cần thiết của angular
 
 -Bước 5: Bắt đầu code.
+
+*Muốn chạy chương trình ta có lệnh ng server -open( viết tắt ng s -o)
+
