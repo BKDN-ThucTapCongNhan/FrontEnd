@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <mat-card>
+        <p style="font-size: 30px; color:rgb(26, 78, 175); text-align:center; margin-top: 10px; ">Registration</p>
+        <div>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisters()">
+                <!-- fullName -->
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name" [(ngModel)]="form.name">
+                        <mat-error *ngFor="let validation of validation_messages.name">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Name course" [(ngModel)]="form.nameCourse"
+                            formControlName="nameCourse">
+
+                        <mat-error *ngFor="let validation of validation_messages.nameCourse">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('nameCourse').hasError(validation.type) && (registerForm.get('nameCourse').dirty || registerForm.get('nameCourse').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput [matDatepicker]="startDay" [min]="dateNow" placeholder="Start Day"
+                            [(ngModel)]="form.startDay" formControlName="startDay" required>
+                        <mat-error *ngFor="let validation of validation_messages.startDay">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('startDay').hasError(validation.type) && (registerForm.get('startDay').dirty || registerForm.get('startDay').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="startDay"></mat-datepicker-toggle>
+                        <mat-datepicker #startDay></mat-datepicker>
+
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput [matDatepicker]="endDay" [min]="form.startDay" placeholder="endDay"
+                            [(ngModel)]="form.endDay" formControlName="endDay" required>
+                        <mat-error *ngFor="let validation of validation_messages.endDay">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('endDay').hasError(validation.type) && (registerForm.get('endDay').dirty || registerForm.get('endDay').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="endDay"></mat-datepicker-toggle>
+                        <mat-datepicker #endDay></mat-datepicker>
+                    </mat-form-field>
+
+                </div>
+                <mat-card-actions>
+                    <button mat-raised-button style="border-radius: 20px" color="primary">Create</button>
+                </mat-card-actions>
+            </form>
+        </div>
+    </mat-card>
+</div>

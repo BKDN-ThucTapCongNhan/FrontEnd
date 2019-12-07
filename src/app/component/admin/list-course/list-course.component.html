@@ -1,0 +1,65 @@
+
+<div class="mat-app-background basic-container">
+    <div class="w3-container w3-lobster font-effect-brick-sign">
+        <h3 class="w3-xxlarge">List Course</h3>
+    </div>
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field>
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+                    <li>
+                            <button mat-button class="btn-create" [routerLink]="'/createLanguageProgram'" color="primary"><i
+                                class="material-icons">add_circle_outline</i>Course</button>
+                    </li>
+                </ul>
+            </div> 
+    </div>
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="DataSource" matSort matSortStart="desc">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="languageProgram">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> LanguageProgram </th>
+                <td mat-cell *matCellDef="let element"> {{element.languageProgram.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="level">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Level </th>
+                <td mat-cell *matCellDef="let element"> {{element.level.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="fee">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Fee </th>
+                <td mat-cell *matCellDef="let element"> {{element.fee}} </td>
+            </ng-container>
+            <ng-container matColumnDef="lessions">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Lessions </th>
+                <td mat-cell *matCellDef="let element"> {{element.lessions}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element; let i = index;">
+                    <mat-icon (click)="updateAccount(element.id)">build</mat-icon>
+
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

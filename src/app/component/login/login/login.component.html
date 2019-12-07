@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <div class="container text-center">
+        <div *ngIf="isLoggedIn; else loggedOut">
+            <p class="text-white pt-5">
+                Hi {{userLogin}}, You logged in as {{roles}}.
+            </p>
+        </div>
+        <ng-template #loggedOut>
+            <form [formGroup]="loginForm" novalidate class="loginForm">
+                <p style="margin-top:20px; font-size:25px; color:#0f44a3;">Sign in</p>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" [(ngModel)]="form.username" formControlName="username">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput [(ngModel)]="form.password" formControlName="password" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <!-- <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error> -->
+                </mat-form-field>
+                <p class="text-danger text-left mt-1" *ngIf="isLoginFailed">(*) Username or password is wrong!</p>
+                <div>
+                    <mat-checkbox class="float-left" style="padding-top: 100px">Remember me</mat-checkbox>
+                </div>
+                <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <a href="" class="float-right">Forgot password?</a>
+            </form>
+        </ng-template>
+    </div>
+</div>

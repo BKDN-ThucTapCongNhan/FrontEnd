@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="epic" style="position: fixed;">
+        <h1>EPIC</h1>
+    </mat-toolbar-row>
+    <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+            <li>
+                <mat-search-bar style="font-size: small;"></mat-search-bar>
+            </li>
+            <li>
+                <a>
+                    <mat-icon class="iconToolbar" [routerLink]="'/admin/logout'">input</mat-icon>
+                    <span class="label">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened [disableClose]="true" class="vertical-menu">
+        <div class="div-btn">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/admin/dashboard'">
+                <mat-icon>dashboard</mat-icon>
+                <span class="custom-text">Dashboard</span>
+            </button>
+        </div>
+        <div class="div-btn" color="#2A3F54">
+            <button mat-raised-button class="btn-blue" [routerLink]="'/student/calendar'"><i
+                    class="material-icons">calendar_today</i>
+                <span class="custom-text">Calendar</span>
+            </button>
+        </div>
+        <div class="div-btn">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/document'">
+                <mat-icon>book</mat-icon>
+                <span class="custom-text">Tài liệu</span>
+            </button>
+        </div>
+        <div class="div-btn">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/schoolManager'">
+                <mat-icon>people</mat-icon>
+                <span class="custom-text">Quản lí học viên</span>
+            </button>
+        </div>
+        <div class="div-btn">
+            <button mat-raised-button class="btn-blue" [routerLink]="''">
+                <mat-icon>notification_important</mat-icon>
+                <span class="custom-text">Notification</span>
+            </button>
+        </div>
+        <div class="div-btn">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/schoolManager'">
+                <mat-icon>contacts</mat-icon>
+                <span class="custom-text">Liên hệ</span>
+            </button>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div style="height: 88vh;">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

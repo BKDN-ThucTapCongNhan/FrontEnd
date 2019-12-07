@@ -1,0 +1,131 @@
+<div class="wrapper">
+    <mat-card>
+        <p style="font-size: 30px; color:rgb(26, 78, 175); text-align:center; margin-top: 10px; ">Registration</p>
+        <div>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegisters()">
+                <!-- fullName -->
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Full Name" [(ngModel)]="form.fullName">
+                        <mat-error *ngFor="let validation of validation_messages.fullName">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('fullName').hasError(validation.type) && (registerForm.get('fullName').dirty || registerForm.get('fullName').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="User Name" [(ngModel)]="form.username" formControlName="username">
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngFor="let validation of validation_messages.userName">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('username').hasError(validation.type) && (registerForm.get('username').dirty || registerForm.get('username').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Password" [(ngModel)]="form.password"
+                            [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngFor="let validation of validation_messages.password">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                
+                <div>
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Email" [(ngModel)]="form.email">
+                        <mat-hint align="end">Example: dev123@gmail.com</mat-hint>
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-error *ngFor="let validation of validation_messages.email">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Role</mat-label>
+                        <mat-select [(ngModel)]="form.role">
+                            <mat-option *ngFor="let role of roles" [value]="role.id">
+                                {{role.nameRole}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngFor="let validation of validation_messages.email">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('role').hasError(validation.type) && (registerForm.get('role').dirty || registerForm.get('role').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+               
+                <!-- Age -->
+                <div>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Age" [(ngModel)]="form.age">
+                    <mat-error *ngFor="let validation of validation_messages.age">
+                        <mat-error class="error-message"
+                            *ngIf="registerForm.get('age').hasError(validation.type) && (registerForm.get('age').dirty || registerForm.get('age').touched)">
+                            {{validation.message}}</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- gender -->
+                <mat-form-field class="full-width">
+                    <mat-select matInput placeholder="Gender" [(ngModel)]="form.gender">
+                        <mat-option *ngFor="let gender of genders" [value]="gender">
+                            {{ gender }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngFor="let validation of validation_messages.gender">
+                        <mat-error class="error-message"
+                            *ngIf="registerForm.get('gender').hasError(validation.type) && (registerForm.get('gender').dirty || registerForm.get('gender').touched)">
+                            {{validation.message}}</mat-error>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+                <!-- phone -->
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Phone Number" [(ngModel)]="form.phone">
+                    <mat-hint align="end">Việt Nam(+84): 098989898</mat-hint>
+                    <mat-icon matSuffix>phone</mat-icon>
+                    <mat-error *ngFor="let validation of validation_messages.phone">
+                        <mat-error class="error-message"
+                            *ngIf="registerForm.get('phone').hasError(validation.type) && (registerForm.get('phone').dirty || registerForm.get('phone').touched)">
+                            {{validation.message}}</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- address -->
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Address" [(ngModel)]="form.address">
+                    <mat-error *ngFor="let validation of validation_messages.address">
+                        <mat-error class="error-message"
+                            *ngIf="registerForm.get('address').hasError(validation.type) && (registerForm.get('address').dirty || registerForm.get('address').touched)">
+                            {{validation.message}}</mat-error>
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- Email -->
+              
+
+                <!-- Password -->
+               
+             
+                <!-- Button -->
+                <mat-card-actions>
+                    <button mat-raised-button style="border-radius: 20px" color="primary">Register</button>
+                </mat-card-actions>
+            </form>
+            <mat-card-actions>
+                <button mat-button routerLink="/login" color="primary">You really an account?</button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+</div>

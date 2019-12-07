@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading single-project-nav">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a [routerLink]="'/admin/listLevel'" data-toggle="tab">Level</a>
+                    </li>
+                    <li class="active">
+                        <a [routerLink]="'/admin/listLanguageProgram'" data-toggle="tab">LanguageProgram</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mat-app-background basic-container">
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field>
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+            <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+                <li>
+                        <button mat-button class="btn-create" [routerLink]="'/admin/createLanguageProgram'" color="primary"><i
+                            class="material-icons">add_circle_outline</i> Language Program</button>
+                </li>
+            </ul>
+        </div>     
+    </div>
+    <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="DataSource" matSort matSortStart="desc">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brief">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Brief </th>
+                <td mat-cell *matCellDef="let element"> {{element.brief}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>
