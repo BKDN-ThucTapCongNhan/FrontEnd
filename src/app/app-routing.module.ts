@@ -22,6 +22,10 @@ import { DocumentComponent } from './component/student/document/document.compone
 import { SchoolManagerComponent } from './component/student/school-manager/school-manager.component';
 import { TeacherLayoutComponent } from './layout/teacher-layout/teacher-layout.component';
 import { DashboardTeacherComponent } from './component/teacher/dashboard-teacher/dashboard-teacher.component';
+import { CalendarTeacherComponent } from './component/teacher/calendar-teacher/calendar-teacher.component';
+import { ListStudentOfTeacherComponent } from './component/teacher/list-student-of-teacher/list-student-of-teacher.component';
+import { StudentManagementComponent } from './component/teacher/student-management/student-management.component';
+import { ExerciseComponent } from './component/student/exercise/exercise.component';
 
 
 const routes: Routes = [
@@ -104,6 +108,9 @@ const routes: Routes = [
       },
       {
         path: "schoolManager", component: SchoolManagerComponent
+      },
+      {
+        path:"excrcise",component:ExerciseComponent
       }
     ]
   },
@@ -111,6 +118,15 @@ const routes: Routes = [
     path:"teacher",component:TeacherLayoutComponent,children :[
       {
         path:"dashboard",component:DashboardTeacherComponent
+      },
+      {
+        path:"calendar",component:CalendarTeacherComponent
+      },
+      {
+        path:"view-class/:id",component:ListStudentOfTeacherComponent
+      },
+      {
+        path:"schoolManager",component:StudentManagementComponent
       }
     ]
   }

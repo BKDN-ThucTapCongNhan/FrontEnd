@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading single-project-nav">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a [routerLink]="'/student/schoolManager'" data-toggle="tab">Danh sách lớp</a>
+                    </li>
+                    <li class="active">
+                        <a [routerLink]="'/student/excrcise'" data-toggle="tab">Bài tập</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mat-app-background basic-container">
+    <div class="w3-container w3-lobster font-effect-brick-sign">
+        <h3 class="w3-xxlarge">Danh sách kết quả bài tập: </h3>
+    </div>
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field>
+            <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+            <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="DataSource" matSort matSortStart="desc">
+            <ng-container matColumnDef="nameExercise">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Bài tập </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameExercise}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="linkGitHub">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> LinkGitHub </th>
+                <td mat-cell *matCellDef="let element"> {{element.linkGitHub}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="point">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Point </th>
+                <td mat-cell *matCellDef="let element"> {{element.point}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</div>

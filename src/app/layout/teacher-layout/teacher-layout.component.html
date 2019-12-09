@@ -8,8 +8,8 @@
                 <mat-search-bar style="font-size: small;"></mat-search-bar>
             </li>
             <li>
-                <a>
-                    <mat-icon class="iconToolbar" [routerLink]="'/admin/logout'">input</mat-icon>
+                <a [routerLink]="'/login'">
+                    <mat-icon class="iconToolbar">input</mat-icon>
                     <span class="label">Logout</span>
                 </a>
             </li>
@@ -20,37 +20,37 @@
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened [disableClose]="true" class="vertical-menu">
         <div class="div-btn">
-            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/admin/dashboard'">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/teacher/dashboard'">
                 <mat-icon>dashboard</mat-icon>
                 <span class="custom-text">Dashboard</span>
             </button>
         </div>
         <div class="div-btn" color="#2A3F54">
-            <button mat-raised-button class="btn-blue" [routerLink]="'/student/calendar'"><i
+            <button mat-raised-button class="btn-blue" [routerLink]="'/teacher/calendar'"><i
                     class="material-icons">calendar_today</i>
                 <span class="custom-text">Calendar</span>
             </button>
         </div>
         <div class="div-btn">
-            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/document'">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/teacher/document'">
                 <mat-icon>book</mat-icon>
                 <span class="custom-text">Tài liệu</span>
             </button>
         </div>
         <div class="div-btn">
-            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/schoolManager'">
+            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/teacher/schoolManager'">
                 <mat-icon>people</mat-icon>
                 <span class="custom-text">Quản lí học viên</span>
             </button>
         </div>
         <div class="div-btn">
-            <button mat-raised-button class="btn-blue" [routerLink]="''">
+            <button mat-raised-button class="btn-blue" >
                 <mat-icon>notification_important</mat-icon>
                 <span class="custom-text">Notification</span>
             </button>
         </div>
         <div class="div-btn">
-            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/schoolManager'">
+            <button mat-raised-button mat-raised-button class="btn-blue">
                 <mat-icon>contacts</mat-icon>
                 <span class="custom-text">Liên hệ</span>
             </button>

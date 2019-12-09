@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { Student } from 'src/app/models/student';
+import { Exercise } from 'src/app/models/exercise';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
-  selector: 'app-school-manager',
-  templateUrl: './school-manager.component.html',
-  styleUrls: ['./school-manager.component.css']
+  selector: 'app-exercise',
+  templateUrl: './exercise.component.html',
+  styleUrls: ['./exercise.component.css']
 })
-export class SchoolManagerComponent implements OnInit {
-
-  displayedColumns = ['fullName', 'gender', 'phone', 'email', 'address'];
-  DataSource: MatTableDataSource<Student>;
+export class ExerciseComponent implements OnInit {
+  displayedColumns = ['nameExercise','linkGitHub', 'point'];
+  DataSource: MatTableDataSource<Exercise>;
   userData: any[] = [];
   id:any;
-  student1=new Student("Quyên","Nữ","123456789","thai.quyen@gmail.com","Quang nam","ThaiQuyen");
-  student2=new Student("Hai","Nam","123456789","haitan28102408@gmail.com","Quang nam","haiTan");
+  exercise=new Exercise("Quyên","https://github.com/BKDN-ThucTapCongNhan/FrontEnd","FrontEnd",7,true);
+  exercise1=new Exercise("Hải","https://github.com/BKDN-ThucTapCongNhan/BackEnd","BackEnd",8,true);
+
   constructor(private route: ActivatedRoute,private adminService:AdminService) {}
 
   getAllStudent(): void {
@@ -27,9 +27,8 @@ export class SchoolManagerComponent implements OnInit {
     )
   }
   ngOnInit() {
-    // this.getAllStudent();
-      this.userData.push(this.student1);
-      this.userData.push(this.student2);
+      this.userData.push(this.exercise);
+      this.userData.push(this.exercise1);
       this.DataSource = new MatTableDataSource(this.userData);
   }
   public doFilter = (value: string) => {

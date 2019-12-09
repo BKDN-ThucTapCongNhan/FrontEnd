@@ -33,6 +33,15 @@ import { CalendarComponent } from './component/student/calendar/calendar.compone
 import { DocumentComponent } from './component/student/document/document.component';
 import { SchoolManagerComponent } from './component/student/school-manager/school-manager.component';
 import { DashboardTeacherComponent } from './component/teacher/dashboard-teacher/dashboard-teacher.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CommonModule } from '@angular/common';
+import { CalendarTeacherComponent } from './component/teacher/calendar-teacher/calendar-teacher.component';
+import { ListStudentOfTeacherComponent } from './component/teacher/list-student-of-teacher/list-student-of-teacher.component';
+import { StudentManagementComponent } from './component/teacher/student-management/student-management.component';
+import { ExerciseComponent } from './component/student/exercise/exercise.component';
 
 @NgModule({
   declarations: [
@@ -60,8 +69,13 @@ import { DashboardTeacherComponent } from './component/teacher/dashboard-teacher
     DocumentComponent,
     SchoolManagerComponent,
     DashboardTeacherComponent,
+    CalendarTeacherComponent,
+    ListStudentOfTeacherComponent,
+    StudentManagementComponent,
+    ExerciseComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -71,7 +85,13 @@ import { DashboardTeacherComponent } from './component/teacher/dashboard-teacher
     ReactiveFormsModule,
     RouterModule,
     NgMatSearchBarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
     
   ],
   providers: [],

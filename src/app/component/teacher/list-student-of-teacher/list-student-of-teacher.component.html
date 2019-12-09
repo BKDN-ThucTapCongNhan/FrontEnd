@@ -1,33 +1,11 @@
-<div class="row">
-        <div class="col-md-12">
-            <div class="panel with-nav-tabs panel-default">
-                <div class="panel-heading single-project-nav">
-                    <ul class="nav nav-tabs">
-                        <li >
-                            <a [routerLink]="'/admin/listStudent'" data-toggle="tab">Student</a>
-                        </li>
-                        <li class="active">
-                            <a [routerLink]="'/admin/listTeacher'" data-toggle="tab">Teacher</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 <div class="mat-app-background basic-container">
     <div fxLayout fxLayoutAlign="center center">
         <mat-form-field>
             <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-                <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-                    <li>
-                            <button mat-button class="btn-create" [routerLink]="'/admin/createAccount'" color="primary"><i
-                                class="material-icons">add_circle_outline</i>Teacher</button>
-                    </li>
-                </ul>
-            </div> 
     </div>
     <div class="mat-elevation-z8">
 
@@ -35,7 +13,7 @@
 
             <ng-container matColumnDef="fullName">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Name </th>
-                <td mat-cell *matCellDef="let element" [routerLink]="[ '/viewClassOfTeacher', element.id ]"> {{element.fullName}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="gender">
@@ -62,18 +40,8 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> User Name </th>
                 <td mat-cell *matCellDef="let element"> {{element.username}} </td>
             </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef class="headerTable"> Action </th>
-                <td mat-cell *matCellDef="let element; let i = index;">
-                    <mat-icon (click)="updateAccount(element.id)">build</mat-icon>
-
-                </td>
-            </ng-container>
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
 </div>
-

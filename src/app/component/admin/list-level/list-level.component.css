@@ -18,3 +18,8 @@ body {
 .basic-container{
     padding: 20px;
 }
+.headerTable {
+    background-color: blue;
+    font-size: 15px;
+    color: white;
+}

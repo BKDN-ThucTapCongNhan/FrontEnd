@@ -5,13 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
-  selector: 'app-school-manager',
-  templateUrl: './school-manager.component.html',
-  styleUrls: ['./school-manager.component.css']
+  selector: 'app-list-student-of-teacher',
+  templateUrl: './list-student-of-teacher.component.html',
+  styleUrls: ['./list-student-of-teacher.component.css']
 })
-export class SchoolManagerComponent implements OnInit {
+export class ListStudentOfTeacherComponent implements OnInit {
 
-  displayedColumns = ['fullName', 'gender', 'phone', 'email', 'address'];
+  displayedColumns = ['fullName', 'gender', 'phone', 'email', 'address', 'username'];
   DataSource: MatTableDataSource<Student>;
   userData: any[] = [];
   id:any;
@@ -28,9 +28,16 @@ export class SchoolManagerComponent implements OnInit {
   }
   ngOnInit() {
     // this.getAllStudent();
+    this.id=this.route.snapshot.params["id"]
+    if(this.id!=null) {
+      this.userData.push(this.student1);
+      this.DataSource = new MatTableDataSource(this.userData);
+    } else {
       this.userData.push(this.student1);
       this.userData.push(this.student2);
       this.DataSource = new MatTableDataSource(this.userData);
+    }
+
   }
   public doFilter = (value: string) => {
     this.DataSource.filter = value.trim().toLocaleLowerCase();

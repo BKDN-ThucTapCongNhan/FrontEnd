@@ -20,27 +20,27 @@
 
         <table mat-table [dataSource]="DataSource" matSort matSortStart="desc">
             <ng-container matColumnDef="name" style="color: aqua;">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Class </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Class </th>
                 <td mat-cell *matCellDef="let element" [routerLink]="[ '/admin/view-class', element.id ]"> {{element.name}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="nameCourse">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Khóa học </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Khóa học </th>
                 <td mat-cell *matCellDef="let element"> {{element.nameCourse}} </td>
             </ng-container>
 
             <ng-container matColumnDef="startDay">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày bắt đầu </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Ngày bắt đầu </th>
                 <td mat-cell *matCellDef="let element"> {{element.startDay | date:'yyyy-MM-dd'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="endDay">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ngày kết thúc</th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Ngày kết thúc</th>
                 <td mat-cell *matCellDef="let element"> {{element.endDay | date:'yyyy-MM-dd'}} </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="headerTable"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>

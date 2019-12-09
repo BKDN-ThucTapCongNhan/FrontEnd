@@ -8,8 +8,8 @@
                 <mat-search-bar style="font-size: small;"></mat-search-bar>
             </li>
             <li>
-                <a>
-                    <mat-icon class="iconToolbar" [routerLink]="'/admin/logout'">input</mat-icon>
+                <a [routerLink]="'/login'">
+                    <mat-icon class="iconToolbar">input</mat-icon>
                     <span class="label">Logout</span>
                 </a>
             </li>
@@ -28,7 +28,7 @@
         <div class="div-btn" color="#2A3F54">
             <button mat-raised-button class="btn-blue" [routerLink]="'/student/calendar'"><i
                     class="material-icons">calendar_today</i>
-                <span class="custom-text">Schedule</span>
+                <span class="custom-text">Calendar</span>
             </button>
         </div>
         <div class="div-btn">
@@ -44,7 +44,7 @@
             </button>
         </div>
         <div class="div-btn">
-            <button mat-raised-button mat-raised-button class="btn-blue" [routerLink]="'/student/schoolManager'">
+            <button mat-raised-button mat-raised-button class="btn-blue">
                 <mat-icon>contacts</mat-icon>
                 <span class="custom-text">Liên hệ</span>
             </button>

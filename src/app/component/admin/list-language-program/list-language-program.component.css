@@ -21,3 +21,8 @@ body {
 .btn-create {
     font-size: 15px;
 }
+.headerTable {
+    background-color: blue;
+    font-size: 15px;
+    color: white;
+}
