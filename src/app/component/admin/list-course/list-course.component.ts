@@ -14,32 +14,32 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class ListCourseComponent implements OnInit {
 
-  displayedColumns = ['name', 'languageProgram', 'level', 'status', 'fee', 'lessions', 'action'];
+  displayedColumns = ['name', 'languageProgram', 'level', 'fee', 'action'];
   DataSource: MatTableDataSource<Course>;
   userData: any[] = [];
   id: any;
-  course1 = new Course("Java part_time", new LanguageProgram("Java", "java123"), new Level("Basic", "Bs"), 0, 24500, "abc");
-  course2 = new Course("PHP part_time", new LanguageProgram("PHP", "php123"), new Level("Basic", "Bs"), 0, 24500, "abc");
+  // course1 = new Course("Java part_time", new LanguageProgram("Java", "java123"), new Level("Basic", "Bs"), 0, 24500, "abc");
+  // course2 = new Course("PHP part_time", new LanguageProgram("PHP", "php123"), new Level("Basic", "Bs"), 0, 24500, "abc");
   constructor(private route: ActivatedRoute, private adminService: AdminService) { }
 
   getAllCourse(): void {
     this.adminService.getAllCourse().subscribe((res) => {
       this.userData = res;
-      this.DataSource.data = this.userData;
+      this.DataSource = new MatTableDataSource(res.data.courses);
     }
     )
   }
   ngOnInit() {
-    // this.getAllCourse();
-    this.id = this.route.snapshot.params["id"]
-    if (this.id != null) {
-      this.userData.push(this.course1);
-      this.DataSource = new MatTableDataSource(this.userData);
-    } else {
-      this.userData.push(this.course1);
-      this.userData.push(this.course2);
-      this.DataSource = new MatTableDataSource(this.userData);
-    }
+    this.getAllCourse();
+    // this.id = this.route.snapshot.params["id"]
+    // if (this.id != null) {
+    //   this.userData.push(this.course1);
+    //   this.DataSource = new MatTableDataSource(this.userData);
+    // } else {
+    //   this.userData.push(this.course1);
+    //   this.userData.push(this.course2);
+    //   this.DataSource = new MatTableDataSource(this.userData);
+    // }
 
   }
   public doFilter = (value: string) => {

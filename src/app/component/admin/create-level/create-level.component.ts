@@ -31,14 +31,15 @@ export class CreateLevelComponent implements OnInit {
   isRegister = false;
   isRegisterFailed = false;
   errorMessage = '';
+  registerForm: FormGroup
 
   constructor(private adminService: AdminService, private fb: FormBuilder, private router: Router, public snackbar: MatSnackBar) { }
-
+  
   ngOnInit() {
     this.createFormRegister();
   }
 
-  registerForm: FormGroup
+  
 
   createFormRegister() {
     this.registerForm = this.fb.group({
@@ -50,17 +51,13 @@ export class CreateLevelComponent implements OnInit {
         Validators.required
       ]))
     })
+    
   };
 
   onSubmitRegisters() {
     console.log(this.registerForm);
-
-    this.levelInfo = new Level(
-      this.form.name,
-      this.form.level,
-    );
-    this.adminService.createLevel(this.levelInfo).subscribe(data=>{
-      
+    this.adminService.createLevel(this.registerForm.value).subscribe(data=>{
+      this.router.navigateByUrl("/admin/listLevel");
     })
   }
 }

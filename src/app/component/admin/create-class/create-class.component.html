@@ -6,7 +6,7 @@
                 <!-- fullName -->
                 <div>
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="Name" [(ngModel)]="form.name">
+                        <input matInput placeholder="Name"  formControlName="name">
                         <mat-error *ngFor="let validation of validation_messages.name">
                             <mat-error class="error-message"
                                 *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
@@ -16,12 +16,12 @@
                 </div>
                 <div>
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="Name course" [(ngModel)]="form.nameCourse"
-                            formControlName="nameCourse">
+                        <input matInput placeholder="Name course"
+                            formControlName="courseID">
 
-                        <mat-error *ngFor="let validation of validation_messages.nameCourse">
+                        <mat-error *ngFor="let validation of validation_messages.courseID">
                             <mat-error class="error-message"
-                                *ngIf="registerForm.get('nameCourse').hasError(validation.type) && (registerForm.get('nameCourse').dirty || registerForm.get('nameCourse').touched)">
+                                *ngIf="registerForm.get('courseID').hasError(validation.type) && (registerForm.get('courseID').dirty || registerForm.get('courseID').touched)">
                                 {{validation.message}}</mat-error>
                         </mat-error>
                     </mat-form-field>
@@ -29,10 +29,10 @@
                 <div>
                     <mat-form-field class="full-width">
                         <input matInput [matDatepicker]="startDay" [min]="dateNow" placeholder="Start Day"
-                            [(ngModel)]="form.startDay" formControlName="startDay" required>
-                        <mat-error *ngFor="let validation of validation_messages.startDay">
+                            [(ngModel)]="form.startDay" formControlName="dateBegin" required>
+                        <mat-error *ngFor="let validation of validation_messages.dateBegin">
                             <mat-error class="error-message"
-                                *ngIf="registerForm.get('startDay').hasError(validation.type) && (registerForm.get('startDay').dirty || registerForm.get('startDay').touched)">
+                                *ngIf="registerForm.get('dateBegin').hasError(validation.type) && (registerForm.get('dateBegin').dirty || registerForm.get('dateBegin').touched)">
                                 {{validation.message}}</mat-error>
                         </mat-error>
                         <mat-datepicker-toggle matSuffix [for]="startDay"></mat-datepicker-toggle>
@@ -41,10 +41,10 @@
                     </mat-form-field>
                     <mat-form-field class="full-width">
                         <input matInput [matDatepicker]="endDay" [min]="form.startDay" placeholder="endDay"
-                            [(ngModel)]="form.endDay" formControlName="endDay" required>
-                        <mat-error *ngFor="let validation of validation_messages.endDay">
+                            [(ngModel)]="form.endDay" formControlName="dateEnd" required>
+                        <mat-error *ngFor="let validation of validation_messages.dateEnd">
                             <mat-error class="error-message"
-                                *ngIf="registerForm.get('endDay').hasError(validation.type) && (registerForm.get('endDay').dirty || registerForm.get('endDay').touched)">
+                                *ngIf="registerForm.get('dateEnd').hasError(validation.type) && (registerForm.get('dateEnd').dirty || registerForm.get('dateEnd').touched)">
                                 {{validation.message}}</mat-error>
                         </mat-error>
                         <mat-datepicker-toggle matSuffix [for]="endDay"></mat-datepicker-toggle>

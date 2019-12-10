@@ -10,6 +10,9 @@
                     <li>
                         <a [routerLink]="'/admin/listTeacher'" data-toggle="tab">Teacher</a>
                     </li>
+                    <li>
+                            <a [routerLink]="'/admin/createAccount'" data-toggle="tab">Create Account</a>
+                        </li>
                 </ul>
             </div>
         </div>
@@ -21,14 +24,6 @@
             <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
-        <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-            <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-                <li>
-                    <button mat-button class="btn-create" [routerLink]="'/admin/createAccount'" color="primary"><i
-                            class="material-icons">add_circle_outline</i>Student</button>
-                </li>
-            </ul>
-        </div>
     </div>
     <div class="mat-elevation-z8">
 
@@ -63,15 +58,13 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> User Name </th>
                 <td mat-cell *matCellDef="let element"> {{element.username}} </td>
             </ng-container>
-
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef class="headerTable"> Action </th>
                 <td mat-cell *matCellDef="let element; let i = index;">
-                    <mat-icon (click)="updateAccount(element.id)">build</mat-icon>
-
+                    <mat-icon (click)="updateAccount(element.id)" class="action-button">edit</mat-icon>
+                    <mat-icon class="action-button">delete_sweep</mat-icon>
                 </td>
             </ng-container>
-
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>

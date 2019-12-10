@@ -26,11 +26,16 @@ import { CalendarTeacherComponent } from './component/teacher/calendar-teacher/c
 import { ListStudentOfTeacherComponent } from './component/teacher/list-student-of-teacher/list-student-of-teacher.component';
 import { StudentManagementComponent } from './component/teacher/student-management/student-management.component';
 import { ExerciseComponent } from './component/student/exercise/exercise.component';
+import { LoginAdminComponent } from './component/login/login-admin/login-admin.component';
+import { EditLevelComponent } from './component/admin/edit-level/edit-level.component';
 
 
 const routes: Routes = [
   {
     path: "login", component: LoginComponent
+  },
+  {
+    path: "loginAdmin", component: LoginAdminComponent
   },
   {
     path: "", component: LoginComponent
@@ -93,6 +98,9 @@ const routes: Routes = [
       {
         path: "createClass", component: CreateClassComponent
       },
+      {
+        path:"level/:id",component:EditLevelComponent
+      }
     ]
   },
   {

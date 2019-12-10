@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Level } from 'src/app/models/level';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
+import { combineLatest, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-level',
@@ -10,32 +11,41 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./list-level.component.css']
 })
 export class ListLevelComponent implements OnInit {
-  displayedColumns = ['name', 'code'];
+  displayedColumns = ['name', 'code','action'];
   DataSource: MatTableDataSource<Level>;
   userData: any[] = [];
-  id:any;
-  level1=new Level("Advantage","AD");
-  level2=new Level("Hai","Nam");
-  constructor(private route: ActivatedRoute,private adminService:AdminService) {}
+  id: any;
+  levelInfo:Level;
+  constructor(private route: ActivatedRoute, private router: Router, private adminService: AdminService) {
+  }
 
-  getAllStudent(): void {
-    this.adminService.getAllAccounts().subscribe((res) => {
+  getAllLevel(): void {
+    this.adminService.getAllLevel().subscribe((res) => {
       this.userData = res;
-      this.DataSource.data = this.userData;
+      this.DataSource = new MatTableDataSource(res.data.levels);
     }
     )
   }
   ngOnInit() {
-    // this.getAllStudent();
-      this.userData.push(this.level1);
-      this.userData.push(this.level2);
-      this.DataSource = new MatTableDataSource(this.userData);
-
-
+    this.getAllLevel();
   }
   public doFilter = (value: string) => {
     this.DataSource.filter = value.trim().toLocaleLowerCase();
   }
-
+  updateLevel(id: String) {
+    this.router.navigateByUrl("/admin/level/"+id);
+  }
+  deleteLevel(idLevel:String) {
+    this.adminService.getDetailLevel(idLevel).subscribe(res => {
+      console.log(res)
+      this.levelInfo=res.data;
+     })
+    if(confirm("I want delete this level?")){
+      this.adminService.deleteLevel(this.levelInfo,idLevel).subscribe(data => {
+        // this.router.navigateByUrl("/admin/listLevel");
+        window.location.reload();
+      })
+    }
+  }
 
 }

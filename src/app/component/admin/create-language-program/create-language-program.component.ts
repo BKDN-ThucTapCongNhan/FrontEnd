@@ -54,13 +54,8 @@ export class CreateLanguageProgramComponent implements OnInit {
 
   onSubmitRegisters() {
     console.log(this.registerForm);
-
-    this.languageProgramInfo = new LanguageProgram(
-      this.form.name,
-      this.form.brief
-    );
-    this.adminService.createLanguageProgram(this.languageProgramInfo).subscribe(data=>{
-      
+    this.adminService.createLanguageProgram(this.registerForm.value).subscribe(data=>{
+      this.router.navigateByUrl("/admin/listLanguageProgram");
     })
 
 

@@ -6,6 +6,7 @@ import { Account } from 'src/app/models/account';
 import { AccountService } from 'src/app/services/account.service';
 import { Role } from 'src/app/models/role';
 import { AdminService } from 'src/app/services/admin.service';
+import { Md5 } from 'ts-md5';
 
 @Component({
   selector: 'app-create-account',
@@ -15,22 +16,22 @@ import { AdminService } from 'src/app/services/admin.service';
 export class CreateAccountComponent implements OnInit {
   hide = true;
 
-  genders = ["Male", "Female"];
+  genders = ["male", "female"];
 
 
   validation_messages = {
-    'fullName': [
+    'name': [
       { type: 'required', message: 'Full Name is required' },
       { type: 'minlength', message: 'Full Name must be at least 5 characters long' },
       { type: 'maxlength', message: 'Full Name cannot be more than 25 characters long' },
       { type: 'pattern', message: 'Full Name no spaces please' }
     ],
-    'username': [
+    'CMND': [
       { type: 'required', message: 'User Name is required' },
       { type: 'minlength', message: 'Username must be at least 5 characters long' },
       { type: 'maxlength', message: 'Username cannot be more than 25 characters long' },
     ],
-    'age': [
+    'birthday': [
       { type: 'required', message: 'Age is required' },
       { type: 'min', message: 'Renting a house over 18 years old' },
       { type: 'max', message: 'Under 70 years old for renting house' }
@@ -64,7 +65,8 @@ export class CreateAccountComponent implements OnInit {
   isRegister = false;
   isRegisterFailed = false;
   errorMessage = '';
-  roles = [new Role(1, "Student"), new Role(2, "Teacher")];
+  roles = [new Role(2, "Student"), new Role(1, "Teacher")];
+  md5=new Md5();
 
   constructor(private accountService: AccountService, private adminService: AdminService, private fb: FormBuilder, private router: Router, public snackbar: MatSnackBar) { }
 
@@ -87,29 +89,22 @@ export class CreateAccountComponent implements OnInit {
         Validators.minLength(5),
         Validators.required
       ])),
-      age: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.min(18),
-        Validators.max(70)
-      ])),
       gender: new FormControl('', Validators.compose([
         Validators.required,
       ])),
       phone: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^\+84\d{9,10}$/)
+        Validators.pattern(/^\+?1?(\d{10,12}$)/)
       ])),
       address: new FormControl('', Validators.compose([
         Validators.required,
       ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
         Validators.required,
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
       ])),
       role: new FormControl('', Validators.compose([
         Validators.required
@@ -118,45 +113,19 @@ export class CreateAccountComponent implements OnInit {
   };
 
   onSubmitRegisters() {
-    console.log(this.registerForm);
-
-    this.userInfo = new Account(
-      this.form.fullName,
-      this.form.username,
-      this.form.age,
-      this.form.gender,
-      this.form.phone,
-      this.form.address,
-      this.form.email,
-      this.form.password,
-      this.form.role
-    );
-
-    this.adminService.registerUser(this.userInfo)
+    console.log(this.registerForm.value);
+    if (this.registerForm.value.role == "Student") {
+      this.registerForm.value.role = 2;
+    } else {
+      this.registerForm.value.role = 1;
+    }
+    this.registerForm.value.password=this.md5.appendStr(this.registerForm.value.password).end();
+    this.userInfo = this.registerForm.value;
+    this.userInfo.classId="5de8c6dbf1df7323e4f4a277";
+    console.log(this.userInfo)
+    this.adminService.createAccount(this.userInfo)
       .subscribe(data => {
-        if (this.userInfo == null) {
-          this.isRegister = false;
-        }
-        this.isRegister = true;
-        this.isRegisterFailed = false;
-        const login = "Please Login";
-        const snackbarRef = this.snackbar.open('Register Successfully!', login, {
-          horizontalPosition: 'center',
-        });
-        snackbarRef.onAction().subscribe(() => {
-          this.router.navigate(['/login']);
-        })
-        console.log(data);
-      },
-        error => {
-          this.errorMessage = error.error.message;
-          console.log("aaaaaaaa", error);
-          this.isRegisterFailed = true;
-          let errorMessage = this.snackbar.open('UserName Is Already Exist', 'Register agian', {
-            horizontalPosition: 'center',
-          });
-          console.log(errorMessage);
-        }
+      }
       )
   }
 }

@@ -15,8 +15,9 @@ export class DashboardTeacherComponent implements OnInit {
   DataSource: MatTableDataSource<Class>;
   userData: any[] = [];
   id:any;
-  class1=new Class("C069H1","Java",new Date(2019,11,21),new Date(2019,12,21));
-  class2=new Class("C069H1","PHP",new Date(2019,12,21),new Date(2019,12,21));
+  class1=new Class("C069H1","123","2019-11-21","2019,12,21");
+  class2=new Class("C079H1","123","2018-11-21","2019,12,21");
+
   constructor(private route:ActivatedRoute,private adminService:AdminService) {}
 
   getAllClass(): void {

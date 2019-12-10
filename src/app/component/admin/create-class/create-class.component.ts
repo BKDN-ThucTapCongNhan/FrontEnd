@@ -5,6 +5,7 @@ import { Class } from 'src/app/models/class';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-class',
@@ -19,15 +20,15 @@ export class CreateClassComponent implements OnInit {
       { type: 'minlength', message: 'Name must be at least 5 characters long' },
       { type: 'maxlength', message: 'Name cannot be more than 25 characters long' }
     ],
-    'nameCourse': [
+    'courseID': [
       { type: 'required', message: 'Name course is required' },
       { type: 'minlength', message: 'Name course must be at least 5 characters long' },
       { type: 'maxlength', message: 'Name course cannot be more than 25 characters long' },
     ],
-    'startDay': [
+    'dateBegin': [
       { type: 'required', message: 'Start day is required' }
     ],
-    'endDay': [
+    'dateEnd': [
       { type: 'required', message: 'Start day is required' }
     ]
   };
@@ -51,30 +52,30 @@ export class CreateClassComponent implements OnInit {
         Validators.maxLength(25),
         Validators.minLength(5)
       ])),
-      nameCourse: new FormControl('', Validators.compose([
+      courseID: new FormControl('', Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.required
       ])),
-      startDay: new FormControl('', Validators.compose([
+      dateBegin: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      endDay: new FormControl('', Validators.compose([
+      dateEnd: new FormControl('', Validators.compose([
         Validators.required
       ])),
     })
   };
 
   onSubmitRegisters() {
-    this.class = new Class(
-      this.form.name,
-      this.form.nameCourse,
-      this.form.startDay,
-      this.form.endDay
-    );
-
+    this.class=this.registerForm.value;
+    this.class.courseID="5de68d426f67ae2472f678db";
+    this.class.dateBegin=this.registerForm.value.dateBegin.getFullYear()+"-"+(this.registerForm.value.dateBegin.getMonth()+1)+"-"+this.registerForm.value.dateBegin.getDate();
+    this.class.dateEnd=this.registerForm.value.dateEnd.getFullYear()+"-"+(this.registerForm.value.dateEnd.getMonth()+1)+"-"+this.registerForm.value.dateEnd.getDate();
+    console.log(this.class)
     this.adminService.createClass(this.class)
-      .subscribe();
+      .subscribe(data=> {
+        this.router.navigateByUrl("/admin/listClass");
+      });
 
   }
 }

@@ -86,4 +86,10 @@ main {
   font-size: 60px;
   text-align: center;
 }
-  
+.scrollHiden {
+  height: 88vh;
+  overflow: hidden;
+}
+.autoScroll {
+  overflow: auto;
+}

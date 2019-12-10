@@ -20,17 +20,14 @@ export class ListLanguageProgramComponent implements OnInit {
   constructor(private route: ActivatedRoute,private adminService:AdminService) {}
 
   getAllStudent(): void {
-    this.adminService.getAllAccounts().subscribe((res) => {
+    this.adminService.getAllLanguageProgram().subscribe((res) => {
       this.userData = res;
-      this.DataSource.data = this.userData;
+      this.DataSource = new MatTableDataSource(res.data.listLanguages);
     }
     )
   }
   ngOnInit() {
-    // this.getAllStudent();
-      this.userData.push(this.languageProgram1);
-      this.userData.push(this.languageProgram2);
-      this.DataSource = new MatTableDataSource(this.userData);
+    this.getAllStudent();
 
 
   }

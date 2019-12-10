@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col-2" style="font-size: 20px;">Đề bài:</div>
     <div>
-        <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..." multiple />
+        <input id="cin" name="cin" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file..."
+            multiple />
         <button type="button" class="btn btn-success btn-s" (click)="upload()" style="margin-top: 5px;">
             <i class="glyphicon glyphicon-open-file"></i>&nbsp;Send
         </button>
@@ -33,19 +34,20 @@
             </ng-container>
 
             <ng-container matColumnDef="nameExercise">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Bài tập </th>
-                    <td mat-cell *matCellDef="let element"> {{element.nameExercise}} </td>
-                </ng-container>
-    
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Bài tập </th>
+                <td mat-cell *matCellDef="let element"> {{element.nameExercise}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="point">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Point </th>
-                <td mat-cell *matCellDef="let element"> {{element.point}} </td>
+                <td matInput mat-cell *matCellDef="let element"> {{element.point}} </td>
+                <input MatInput placeholder="abc">
             </ng-container>
 
             <ng-container matColumnDef="send">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Send </th>
                 <td mat-cell *matCellDef="let element">
-                <mat-checkbox>Send</mat-checkbox>    
+                    <mat-checkbox>Send</mat-checkbox>
                 </td>
             </ng-container>
 

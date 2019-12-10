@@ -1,14 +1,17 @@
 export class Class {
-    id?:number;
-    name:String;
-    nameCourse:String;
-    startDay:Date;
-    endDay:Date;
+    _id?: String;
+    name: String;
+    courseID: String;
+    dateBegin: String;
+    dateEnd: String;
 
-    constructor(name:String,nameCourse:String,startDay:Date,endDay:Date) {
-        this.name=name;
-        this.nameCourse=nameCourse;
-        this.startDay=startDay;
-        this.endDay=endDay;
+    constructor(name: String, nameCourse: String, startDay: String, endDay: String) {
+        this.name = name;
+        this.courseID = nameCourse;
+        this.dateBegin = startDay;
+        this.dateEnd = endDay;
+    }
+    setId(id: string) {
+        this._id = id;
     }
 }

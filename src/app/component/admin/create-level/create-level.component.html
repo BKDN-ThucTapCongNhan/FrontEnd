@@ -7,7 +7,7 @@
 
                 <!-- Name -->
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Name level" [(ngModel)]="form.name">
+                    <input matInput placeholder="Name level" formControlName="name">
                     <mat-error *ngFor="let validation of validation_messages.name">
                         <mat-error class="error-message"
                             *ngIf="registerForm.get('name').hasError(validation.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
@@ -17,7 +17,7 @@
 
                 <!-- Code -->
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Code" [(ngModel)]="form.code" formControlName="code">
+                    <input matInput placeholder="Code" formControlName="code" >
                     <mat-icon matSuffix>person</mat-icon>
                     <mat-error *ngFor="let validation of validation_messages.code">
                         <mat-error class="error-message"

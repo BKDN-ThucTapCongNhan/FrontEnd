@@ -42,6 +42,10 @@ import { CalendarTeacherComponent } from './component/teacher/calendar-teacher/c
 import { ListStudentOfTeacherComponent } from './component/teacher/list-student-of-teacher/list-student-of-teacher.component';
 import { StudentManagementComponent } from './component/teacher/student-management/student-management.component';
 import { ExerciseComponent } from './component/student/exercise/exercise.component';
+import { EditClassComponent } from './component/admin/edit-class/edit-class.component';
+import { LoginAdminComponent } from './component/login/login-admin/login-admin.component';
+import { EditLevelComponent } from './component/admin/edit-level/edit-level.component';
+import {Md5} from 'ts-md5/dist/md5';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,9 @@ import { ExerciseComponent } from './component/student/exercise/exercise.compone
     ListStudentOfTeacherComponent,
     StudentManagementComponent,
     ExerciseComponent,
+    EditClassComponent,
+    LoginAdminComponent,
+    EditLevelComponent,
   ],
   imports: [
     CommonModule,

@@ -10,7 +10,7 @@ import { Role } from 'src/app/models/role';
 })
 export class UserProfileComponent implements OnInit {
 
-  account: Account = new Account("hai", "hai.tan", "20", "Male", "01216295776", "Quang Nam", "hai.tan@codegym.vn", "1234567", new Role(1, "Admin"));
+  account: Account = new Account("hai", "hai.tan", "20", "Male", "01216295776", "Quang Nam", "hai.tan@codegym.vn", "1234567", 1);
   editAccountForm: FormGroup;
   constructor(public fb: FormBuilder) {
   }

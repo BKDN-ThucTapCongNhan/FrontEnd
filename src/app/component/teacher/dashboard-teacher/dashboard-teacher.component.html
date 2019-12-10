@@ -16,17 +16,17 @@
 
             <ng-container matColumnDef="nameCourse">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Khóa học </th>
-                <td mat-cell *matCellDef="let element"> {{element.nameCourse}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.courseID}} </td>
             </ng-container>
 
             <ng-container matColumnDef="startDay">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Ngày bắt đầu </th>
-                <td mat-cell *matCellDef="let element"> {{element.startDay | date:'yyyy-MM-dd'}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.dateBegin | date:'yyyy-MM-dd'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="endDay">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header class="headerTable"> Ngày kết thúc</th>
-                <td mat-cell *matCellDef="let element"> {{element.endDay | date:'yyyy-MM-dd'}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.dateEnd | date:'yyyy-MM-dd'}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

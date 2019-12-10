@@ -1,5 +1,5 @@
 export class Exercise {
-    id?: Number;
+    _id?: string;
     nameStudent: String;
     linkGitHub: String;
     nameExercise:String;

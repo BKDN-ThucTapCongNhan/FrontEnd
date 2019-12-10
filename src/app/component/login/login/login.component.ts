@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.username === "admin") {
-      this.router.navigateByUrl("/admin/dashboard");
-    } else if (this.form.username === "student") {
+   if ((this.form.username === "ThaiQuyen" && this.form.password==="123123")||(this.form.username === "haiTan" && this.form.password==="123123")) {
       this.router.navigateByUrl("/student/home");
-    } else if(this.form.username=="teacher") {
+    } else if(this.form.username=="teacher" && this.form.password==="teacher") {
       this.router.navigateByUrl("/teacher/dashboard");
+    } else{
+      alert("Tài khoản hoặc mật khẩu không đúng")
     }
 
   }

@@ -1,4 +1,23 @@
-<div class="wrapper">
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading single-project-nav">
+                <ul class="nav nav-tabs">
+                    <li>
+                        <a [routerLink]="'/admin/listStudent'" data-toggle="tab">Student</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="'/admin/listTeacher'" data-toggle="tab">Teacher</a>
+                    </li>
+                    <li class="active">
+                        <a [routerLink]="'/admin/createAccount'" data-toggle="tab">Create Account</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper scrollHiden">
     <mat-card>
         <p style="font-size: 30px; color:rgb(26, 78, 175); text-align:center; margin-top: 10px; ">Registration</p>
         <div>
@@ -6,7 +25,7 @@
                 <!-- fullName -->
                 <div>
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="Full Name" [(ngModel)]="form.fullName">
+                        <input matInput placeholder="Full Name" formControlName="fullName">
                         <mat-error *ngFor="let validation of validation_messages.fullName">
                             <mat-error class="error-message"
                                 *ngIf="registerForm.get('fullName').hasError(validation.type) && (registerForm.get('fullName').dirty || registerForm.get('fullName').touched)">
@@ -16,7 +35,7 @@
                 </div>
                 <div>
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="User Name" [(ngModel)]="form.username" formControlName="username">
+                        <input matInput placeholder="User Name" formControlName="username">
                         <mat-icon matSuffix>person</mat-icon>
                         <mat-error *ngFor="let validation of validation_messages.userName">
                             <mat-error class="error-message"
@@ -25,7 +44,7 @@
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="Password" [(ngModel)]="form.password"
+                        <input matInput placeholder="Password" formControlName="password"
                             [type]="hide ? 'password' : 'text'">
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">
@@ -38,10 +57,10 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                
+
                 <div>
                     <mat-form-field class="full-width">
-                        <input matInput placeholder="Email" [(ngModel)]="form.email">
+                        <input matInput placeholder="Email" formControlName="email">
                         <mat-hint align="end">Example: dev123@gmail.com</mat-hint>
                         <mat-icon matSuffix>email</mat-icon>
                         <mat-error *ngFor="let validation of validation_messages.email">
@@ -52,47 +71,38 @@
                     </mat-form-field>
                     <mat-form-field class="full-width">
                         <mat-label>Role</mat-label>
-                        <mat-select [(ngModel)]="form.role">
-                            <mat-option *ngFor="let role of roles" [value]="role.id">
+                        <mat-select matInput placeholder="Gender" formControlName="role">
+                            <mat-option *ngFor="let role of roles" [value]="role.nameRole">
                                 {{role.nameRole}}
                             </mat-option>
                         </mat-select>
-                        <mat-error *ngFor="let validation of validation_messages.email">
+                        <mat-error *ngFor="let validation of validation_messages.role">
                             <mat-error class="error-message"
                                 *ngIf="registerForm.get('role').hasError(validation.type) && (registerForm.get('role').dirty || registerForm.get('role').touched)">
                                 {{validation.message}}</mat-error>
                         </mat-error>
                     </mat-form-field>
                 </div>
-               
+
                 <!-- Age -->
                 <div>
-                <mat-form-field class="full-width">
-                    <input matInput placeholder="Age" [(ngModel)]="form.age">
-                    <mat-error *ngFor="let validation of validation_messages.age">
-                        <mat-error class="error-message"
-                            *ngIf="registerForm.get('age').hasError(validation.type) && (registerForm.get('age').dirty || registerForm.get('age').touched)">
-                            {{validation.message}}</mat-error>
-                    </mat-error>
-                </mat-form-field>
-
-                <!-- gender -->
-                <mat-form-field class="full-width">
-                    <mat-select matInput placeholder="Gender" [(ngModel)]="form.gender">
-                        <mat-option *ngFor="let gender of genders" [value]="gender">
-                            {{ gender }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error *ngFor="let validation of validation_messages.gender">
-                        <mat-error class="error-message"
-                            *ngIf="registerForm.get('gender').hasError(validation.type) && (registerForm.get('gender').dirty || registerForm.get('gender').touched)">
-                            {{validation.message}}</mat-error>
-                    </mat-error>
-                </mat-form-field>
-            </div>
+                    <!-- gender -->
+                    <mat-form-field class="full-width">
+                        <mat-select matInput placeholder="Gender" formControlName="gender">
+                            <mat-option *ngFor="let gender of genders" [value]="gender">
+                                {{gender}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngFor="let validation of validation_messages.gender">
+                            <mat-error class="error-message"
+                                *ngIf="registerForm.get('gender').hasError(validation.type) && (registerForm.get('gender').dirty || registerForm.get('gender').touched)">
+                                {{validation.message}}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
                 <!-- phone -->
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Phone Number" [(ngModel)]="form.phone">
+                    <input matInput placeholder="Phone Number" formControlName="phone">
                     <mat-hint align="end">Việt Nam(+84): 098989898</mat-hint>
                     <mat-icon matSuffix>phone</mat-icon>
                     <mat-error *ngFor="let validation of validation_messages.phone">
@@ -104,21 +114,13 @@
 
                 <!-- address -->
                 <mat-form-field class="full-width">
-                    <input matInput placeholder="Address" [(ngModel)]="form.address">
+                    <input matInput placeholder="Address" formControlName="address">
                     <mat-error *ngFor="let validation of validation_messages.address">
                         <mat-error class="error-message"
                             *ngIf="registerForm.get('address').hasError(validation.type) && (registerForm.get('address').dirty || registerForm.get('address').touched)">
                             {{validation.message}}</mat-error>
                     </mat-error>
                 </mat-form-field>
-
-                <!-- Email -->
-              
-
-                <!-- Password -->
-               
-             
-                <!-- Button -->
                 <mat-card-actions>
                     <button mat-raised-button style="border-radius: 20px" color="primary">Register</button>
                 </mat-card-actions>

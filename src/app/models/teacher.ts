@@ -1,5 +1,5 @@
 export class Teacher{
-    id?: number;
+    _id?: string;
     fullName: string;
     gender: string;
     phone: string;

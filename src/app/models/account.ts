@@ -1,7 +1,7 @@
 import { Role } from './role';
 
 export class Account {
-    id?: Number;
+    _id?: Number;
     fullName: String;
     username: String;
     gender?: String;
@@ -9,9 +9,10 @@ export class Account {
     address?: String;
     email: String;
     password: String;
-    role:Role;
+    classId?:String;
+    role:number;
 
-    constructor(fullName: String, username: String, age: String, gender: String, phone: String, address: String, email: String, password: String, role:Role) {
+    constructor(fullName: String, username: String, age: String, gender: String, phone: String, address: String, email: String, password: String, role:number) {
             this.fullName = fullName,
             this.username = username,
             this.gender = gender,

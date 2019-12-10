@@ -14,22 +14,35 @@ export class ListTeacherComponent implements OnInit {
   DataSource: MatTableDataSource<Teacher>;
   userData: any[] = [];
   id:any;
-  teacher1=new Teacher("Quyên","Nữ","123456789","thai.quyen@gmail.com","Quang nam","ThaiQuyen");
-  teacher2=new Teacher("Hai","Nam","123456789","haitan28102408@gmail.com","Quang nam","haiTan");
   constructor(private route: ActivatedRoute,private adminService:AdminService) {}
 
-  ngOnInit() {
-    // this.getAllTeacher();
-    this.userData.push(this.teacher1);
-    this.userData.push(this.teacher2);
-    this.DataSource = new MatTableDataSource(this.userData);
-  }
-  getAllTeacher(): void {
-    this.adminService.getAllTeacher().subscribe((res) => {
-      this.userData = res;
-      this.DataSource.data = this.userData;
+  getAllAccount() {
+    this.adminService.getAllAccounts().subscribe(res => {
+      // this.userData = res;
+      // this.DataSource.data = this.userData;
+      console.log(res.data.listAccount);
+      let account = [];
+      res.data.listAccount.forEach((element:any) => {
+        let temp:any=new Object;
+        if (element.role == 1) {
+          temp.role = element.role;
+          temp.email = element.email;
+          temp.gender = element.detail.gender;
+          temp.fullName = element.detail.fullName;
+          temp.username = element.detail.username;
+          temp.phone = element.detail.phone;
+          temp.address = element.detail.address;
+          temp._id = element.detail._id;
+          account.push(temp);
+        }
+      });
+      console.log(account)
+      this.DataSource = new MatTableDataSource(account);
     }
     )
+  }
+  ngOnInit() {
+    this.getAllAccount();
   }
   public doFilter = (value: string) => {
     this.DataSource.filter = value.trim().toLocaleLowerCase();
